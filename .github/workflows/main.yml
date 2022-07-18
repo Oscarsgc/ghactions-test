@@ -38,8 +38,8 @@ jobs:
     
     - name: Build Angular Integration web app
       run: |
-        # cd ./ui
-        # npm install
+        cd ./ui
+        npm install
         npm run build
     
     - name: Archive UI Integration Build
@@ -52,7 +52,7 @@ jobs:
     - name: Archive Full Build
       uses: vimtor/action-zip@v1
       with:
-        files: 'integration-release-${{steps.date.outputs.date}}.zip prod-release-${{steps.date.outputs.date}}.zip'
+        files: './ui/integration-release-${{steps.date.outputs.date}}.zip ./ui/prod-release-${{steps.date.outputs.date}}.zip'
         recursive: true        
         dest: 'LS-release-${{steps.date.outputs.date}}.zip'
     
@@ -64,6 +64,6 @@ jobs:
         sp_password: ${{ secrets.PASSWORD }}
         sp_folder: ${{ secrets.SP_FOLDER }}
         sp_file_name: 'LS-release-${{steps.date.outputs.date}}.zip'
-        file: 'LS-release-${{steps.date.outputs.date}}.zip'
+        file: './ui/LS-release-${{steps.date.outputs.date}}.zip'
 
         
