@@ -25,7 +25,7 @@ jobs:
 
     - name: Build Angular Production web app
       run: |
-        # cd ./ui
+        cd ./ui
         npm install
         npm run build:prod
     
