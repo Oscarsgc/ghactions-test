@@ -30,10 +30,9 @@ jobs:
         npm run build:prod
     
     - name: Archive UI Production Build
-      run: cd ./ui
       uses: vimtor/action-zip@v1
       with:
-        files: 'dist/'
+        files: './ui/dist/'
         recursive: true
         dest: 'prod-release-${{steps.date.outputs.date}}.zip'
     
@@ -44,10 +43,9 @@ jobs:
         npm run build
     
     - name: Archive UI Integration Build
-      run: cd ./ui
       uses: vimtor/action-zip@v1
       with:
-        files: 'dist/'
+        files: './ui/dist/'
         recursive: true        
         dest: 'integration-release-${{steps.date.outputs.date}}.zip'
 
