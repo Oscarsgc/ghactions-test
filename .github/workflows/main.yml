@@ -30,6 +30,7 @@ jobs:
         npm run build:prod
     
     - name: Archive UI Production Build
+      run: cd ./ui
       uses: vimtor/action-zip@v1
       with:
         files: 'dist/'
@@ -43,6 +44,7 @@ jobs:
         npm run build
     
     - name: Archive UI Integration Build
+      run: cd ./ui
       uses: vimtor/action-zip@v1
       with:
         files: 'dist/'
