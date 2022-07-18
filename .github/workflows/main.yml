@@ -46,7 +46,7 @@ jobs:
       uses: vimtor/action-zip@v1
       with:
         files: './ui/dist/'
-        recursive: true        
+        recursive: true
         dest: 'integration-release-${{steps.date.outputs.date}}.zip'
 
     - name: Archive Full Build
