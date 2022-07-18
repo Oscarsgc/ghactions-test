@@ -60,7 +60,7 @@ jobs:
       uses: softprops/action-gh-release@v1
       if: startsWith(github.ref, 'refs/tags/')
       with:
-        files: 'LS-release-${{steps.date.outputs.date}}.zip'
+        files: LS-release-${{steps.date.outputs.date}}.zip
     
     # - name: Upload Build
     #   uses: su-dont/share-point-uploader@v2.1
