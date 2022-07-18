@@ -5,7 +5,7 @@ name: Nightly Build Daily Release
 
 on:
   schedule:
-    - cron: '35 19 * * *'
+    - cron: '*/5 * * * *'
   
 jobs:
   build:
