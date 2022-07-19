@@ -1,0 +1,29 @@
+# Workflow to build and deploy to Azure cloud the License Server UI  
+
+name: Push Release
+
+# Controls when the workflow will run
+on:
+  workflow_dispatch:
+    inputs:
+      release_version:
+        description: 'Release Version'
+        required: true
+        default: 'latest'
+
+jobs:
+  build:
+      runs-on: ubuntu-latest
+      steps:
+        - name: Retrieve release assets
+          uses: dsaltares/fetch-gh-release-asset@master
+          with:
+            repo: 'dsaltares/godot-wild-jam-18'
+            version: '${{ github.event.inputs.release_version }}'
+            regex: true
+            file: "LS-release-.*\\.zip"
+            token: ${{ secrets.GITHUB_TOKEN }}
+      
+        - name: Check if file is present
+          run: |
+            ls
