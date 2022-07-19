@@ -20,7 +20,7 @@ jobs:
           with:
             version: '${{ github.event.inputs.release_version }}'
             regex: true
-            file: "*"
+            file: "LS"
             target: "./"
       
         - name: Check if file is present
