@@ -19,8 +19,8 @@ jobs:
           uses: dsaltares/fetch-gh-release-asset@master
           with:
             version: '${{ github.event.inputs.release_version }}'
-            file: "*"
             regex: true
+            file: "LS-release-*"
       
         - name: Check if file is present
           run: |
