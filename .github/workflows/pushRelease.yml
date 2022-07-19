@@ -18,10 +18,9 @@ jobs:
         - name: Retrieve release assets
           uses: dsaltares/fetch-gh-release-asset@master
           with:
-            repo: '${{github.repository}}'
             version: '${{ github.event.inputs.release_version }}'
-            file: "Latest-release.zip"
-            token: ${{ secrets.GITHUB_TOKEN }}
+            file: "*"
+            regex: true
       
         - name: Check if file is present
           run: |
