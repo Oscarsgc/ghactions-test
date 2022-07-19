@@ -21,7 +21,7 @@ jobs:
             repo: 'dsaltares/godot-wild-jam-18'
             version: '${{ github.event.inputs.release_version }}'
             regex: true
-            file: "LS-release-.*\\.zip"
+            file: "LS-release-*\\.zip"
             token: ${{ secrets.GITHUB_TOKEN }}
       
         - name: Check if file is present
