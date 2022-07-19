@@ -20,8 +20,7 @@ jobs:
           with:
             repo: '${{github.repository}}'
             version: '${{ github.event.inputs.release_version }}'
-            regex: true
-            file: "LS-release-*"
+            file: "Latest-release.zip"
             token: ${{ secrets.GITHUB_TOKEN }}
       
         - name: Check if file is present
