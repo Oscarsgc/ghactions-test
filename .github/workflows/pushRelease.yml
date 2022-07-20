@@ -35,7 +35,7 @@ jobs:
             ls
         
         - name: Unzip Integration UI
-          run: unzip -qq integration*.zip
+          run: unzip -qq integration*.zip -d Integration-build
           working-directory: Release
 
         - name: Check if file is present
