@@ -30,4 +30,4 @@ jobs:
         
         - name: Check if file is present
           run: |
-            ls
+            ls Releases
