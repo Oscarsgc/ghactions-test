@@ -35,7 +35,7 @@ jobs:
             ls
         
         - name: Unzip Integration UI
-          run: unzip -qq ./Release/integration*.zip
+          run: unzip -qq ./Release/*.zip
         
         - name: Check if file is present
           run: |
