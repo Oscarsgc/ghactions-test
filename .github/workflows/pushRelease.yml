@@ -23,11 +23,24 @@ jobs:
             file: "LS"
             target: "./"
         
-        - name: Unzip Release
+        - name: Unzip Release Folder
           uses: montudor/action-zip@v1
           with:
             args: unzip -qq *.zip -d Release
         
         - name: Check if file is present
           run: |
-            ls Releases/
+            cd Releases
+            ls
+        
+        - name: Unzip Integration UI
+          uses: montudor/action-zip@v1
+          with:
+            args: unzip -qq integration*.zip -d UI
+        
+        - name: Check if file is present
+          run: |
+            cd Releases
+            ls
+            cd UI
+            ls
