@@ -30,7 +30,7 @@ jobs:
         
         - name: Check if file is present
           run: |
-            cd Releases
+            cd Release
             ls
         
         - name: Unzip Integration UI
@@ -40,7 +40,7 @@ jobs:
         
         - name: Check if file is present
           run: |
-            cd Releases
+            cd Release
             ls
             cd UI
             ls
