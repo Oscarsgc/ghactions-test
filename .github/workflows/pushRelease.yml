@@ -40,5 +40,5 @@ jobs:
 
         - name: Check if file is present
           run: |
-            cd Release
+            cd Release/Integration-build
             ls
