@@ -36,9 +36,8 @@ jobs:
         
         - name: Unzip Integration UI
           run: unzip -qq integration-release-2022-07-20T19_03_53.zip
-          working-directory: path/to/work-dir
+          working-directory: Release
 
-        
         - name: Check if file is present
           run: |
             cd Release
