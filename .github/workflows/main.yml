@@ -64,4 +64,6 @@ jobs:
         body: ${{ github.event.head_commit.message }}        
         artifacts: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
         token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Print Release Version
+      run: echo 'Released ${{ steps.tag_version.outputs.new_tag }} Build'
   
