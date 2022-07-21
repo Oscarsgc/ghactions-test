@@ -33,7 +33,7 @@ jobs:
           run: |
             cd Release
             ls
-        
+      
         - name: Unzip Integration UI
           run: unzip -qq integration*.zip -d Integration-build
           working-directory: Release
