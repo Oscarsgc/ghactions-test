@@ -62,6 +62,6 @@ jobs:
         tag: ${{ steps.tag_version.outputs.new_tag }}
         name: Release ${{ steps.tag_version.outputs.new_tag }}
         body: ${{ github.event.head_commit.message }}        
-        artifacts: 'LS-release-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
+        artifacts: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
         token: ${{ secrets.GITHUB_TOKEN }}
   
