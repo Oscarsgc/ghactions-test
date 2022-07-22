@@ -41,7 +41,8 @@ jobs:
 
         - name: Check if file is present
           run: |
-            cd Release/Integration-build
+            cd Release/Integration-build/actions-test
+            echo "Released ${{ steps.release_download.outputs.version }} Build" > Build.txt
             ls
         
         - name: Print deployed Release Version

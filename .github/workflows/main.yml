@@ -86,8 +86,7 @@ jobs:
       with:
         tag: ${{ steps.tag_version.outputs.new_tag }}
         name: Release ${{ steps.tag_version.outputs.new_tag }}
-        bodyFile: "./ReleaseNotes.txt"
-        # body: ${{ github.event.head_commit.message }}        
+        bodyFile: "./ReleaseNotes.txt" 
         artifacts: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
         token: ${{ secrets.GITHUB_TOKEN }}
     - name: Print Release Version
