@@ -30,25 +30,25 @@ jobs:
       id: hash
       run: echo "::set-output name=hash::$(git rev-parse --short "$GITHUB_SHA")"
     
-    - name: Build Angular Integration web app
-      run: |
-        cd ./ui
-        npm install
-        npm run build
+    # - name: Build Angular Integration web app
+    #   run: |
+    #     cd ./ui
+    #     npm install
+    #     npm run build
     
-    - name: Archive UI Integration Build
-      uses: vimtor/action-zip@v1
-      with:
-        files: './ui/dist/'
-        recursive: true
-        dest: 'integration-release-${{steps.date.outputs.date}}.zip'
+    # - name: Archive UI Integration Build
+    #   uses: vimtor/action-zip@v1
+    #   with:
+    #     files: './ui/dist/'
+    #     recursive: true
+    #     dest: 'integration-release-${{steps.date.outputs.date}}.zip'
 
-    - name: Archive Full Build
-      uses: vimtor/action-zip@v1
-      with:
-        files: 'integration-release-${{steps.date.outputs.date}}.zip'
-        recursive: true        
-        dest: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
+    # - name: Archive Full Build
+    #   uses: vimtor/action-zip@v1
+    #   with:
+    #     files: 'integration-release-${{steps.date.outputs.date}}.zip'
+    #     recursive: true        
+    #     dest: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
     
     - name: Bump version and push tag
       id: tag_version
@@ -56,14 +56,26 @@ jobs:
       with:
         github_token: ${{ secrets.GITHUB_TOKEN }}
 
-    - name: Create a GitHub release
-      uses: ncipollo/release-action@v1
+    # - name: Create a GitHub release
+    #   uses: ncipollo/release-action@v1
+    #   with:
+    #     tag: ${{ steps.tag_version.outputs.new_tag }}
+    #     name: Release ${{ steps.tag_version.outputs.new_tag }}
+    #     body: ${{ github.event.head_commit.message }}        
+    #     artifacts: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
+    #     token: ${{ secrets.GITHUB_TOKEN }}
+    # - name: Print Release Version
+    #   run: echo 'Released ${{ steps.tag_version.outputs.new_tag }} Build'
+
+    - name: Get latest release details
+      id: release_details
+      uses: cardinalby/git-get-release-action@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
       with:
-        tag: ${{ steps.tag_version.outputs.new_tag }}
-        name: Release ${{ steps.tag_version.outputs.new_tag }}
-        body: ${{ github.event.head_commit.message }}        
-        artifacts: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
-        token: ${{ secrets.GITHUB_TOKEN }}
-    - name: Print Release Version
-      run: echo 'Released ${{ steps.tag_version.outputs.new_tag }} Build'
-  
+        tag: ${{ steps.tag_version.outputs.previous_tag }}
+
+    - name: Print Data
+      run: |
+        echo ${{ steps.release_details.outputs.target_commitish }}
+        echo ${{ steps.release_details.outputs.name }}
