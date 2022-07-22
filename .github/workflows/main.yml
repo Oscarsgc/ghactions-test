@@ -69,13 +69,14 @@ jobs:
 
     - name: Get latest release details
       id: release_details
-      uses: cardinalby/git-get-release-action@v1
-      env:
-        GITHUB_TOKEN: ${{ github.token }}
+      uses: ctrlaltdev/get-releases-action@latest
       with:
-        latest: true
+        repo: ${{ github.repository }}
+        token: ${{ secrets.GITHUB_TOKEN }}
+        limit: 1
+
 
     - name: Print Data
       run: |
-        echo ${{ steps.release_details.outputs.assets }}
-        echo ${{ steps.release_details.outputs.name }}
+        echo ${{ steps.release_details.outputs.releases }}
+        
