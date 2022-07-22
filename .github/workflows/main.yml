@@ -75,7 +75,18 @@ jobs:
       with:
         latest: true
 
-    - name: Print Data
-      run: |
-        echo ${{ fromJSON(steps.release_details.outputs.assets)[0].name }}
-        echo ${{ steps.release_details.outputs.name }}
+    - name: Get Latest Release Commit
+      id: get_commit
+      uses: actions/github-script@0.9.0
+      with:
+        script: |
+          const commit = ${{fromJSON(steps.release_details.outputs.assets)[0].name}}.split('-').unshift().split('.').shift();
+          core.setOutput('commit', commit);
+
+    - name: Print commit hash
+      run: echo "${{steps.get_commit.outputs.commit}}"
+
+
+        # run: echo "::set-output name=latest_commit::${{fromJSON(steps.release_details.outputs.assets)[0].name}}"
+        # run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
+        # echo ${{ steps.release_details.outputs.name }}
