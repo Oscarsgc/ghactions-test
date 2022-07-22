@@ -77,5 +77,5 @@ jobs:
 
     - name: Print Data
       run: |
-        echo ${{ fromJSON(steps.release_details.outputs.assets) }}[0].name
+        echo ${{ toJSON(steps.release_details.outputs.assets) }}[0].name
         echo ${{ steps.release_details.outputs.name }}
