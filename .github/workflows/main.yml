@@ -86,7 +86,5 @@ jobs:
     - name: Print commit hash
       run: echo "${{steps.get_commit.outputs.commit}}"
 
-
-        # run: echo "::set-output name=latest_commit::${{fromJSON(steps.release_details.outputs.assets)[0].name}}"
-        # run: echo "::set-output name=date::$(date +'%Y-%m-%dT%H_%M_%S')"
-        # echo ${{ steps.release_details.outputs.name }}
+    - name: Show all commits from latest to current
+      run: git log --oneline --ancestry-path ${{steps.get_commit.outputs.commit}}^..${{steps.hash.outputs.hash}}
