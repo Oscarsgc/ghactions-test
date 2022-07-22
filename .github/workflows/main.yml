@@ -73,7 +73,7 @@ jobs:
       env:
         GITHUB_TOKEN: ${{ github.token }}
       with:
-        tag: ${{ steps.tag_version.outputs.previous_tag }}
+        tag: latest
 
     - name: Print Data
       run: |
