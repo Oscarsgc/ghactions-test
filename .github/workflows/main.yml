@@ -80,7 +80,7 @@ jobs:
       uses: actions/github-script@0.9.0
       with:
         script: |
-          const commit = new String(${{fromJSON(steps.release_details.outputs.assets)[0].name}}).split('-').pop().split('.').shift();
+          const commit = "${{fromJSON(steps.release_details.outputs.assets)[0].name}}".split('-').pop().split('.').shift();
           core.setOutput('commit', commit);
 
     - name: Print commit hash
