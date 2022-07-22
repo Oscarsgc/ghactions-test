@@ -44,6 +44,7 @@ jobs:
             cd Release/Integration-build/actions-test
             echo "Released ${{ steps.release_download.outputs.version }} Build" > Build.txt
             ls
+            cat Build.txt
         
         - name: Print deployed Release Version
           run: echo 'Released ${{ steps.release_download.outputs.version }} Build'
