@@ -88,7 +88,7 @@ jobs:
 
     - name: Show all commits from latest release to current commit
       id: list_messages
-      run: echo "::set-output name=messages::git log --pretty=format:%s --ancestry-path ${{steps.get_commit.outputs.commit}}^..${{steps.hash.outputs.hash}}
+      run: echo "::set-output name=messages::git log --pretty=format:%s --ancestry-path ${{steps.get_commit.outputs.commit}}^..${{steps.hash.outputs.hash}}"
     
     - name: Print messages
       run: echo ${{steps.list_messages.outputs.messages}}
