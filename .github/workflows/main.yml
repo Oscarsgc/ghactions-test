@@ -77,5 +77,5 @@ jobs:
 
     - name: Print Data
       run: |
-        echo ${{ parseJSON(steps.release_details.outputs.assets) }}[0].name
+        echo ${{ fromJSON(steps.release_details.outputs.assets) }}[0].name
         echo ${{ steps.release_details.outputs.name }}
