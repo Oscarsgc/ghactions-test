@@ -90,4 +90,5 @@ jobs:
       run: echo "${{steps.get_commit.outputs.commit}}"
 
     - name: Show all commits from latest to current
-      run: git log --oneline --ancestry-path ${{steps.get_commit.outputs.commit}}^..${{steps.hash.outputs.hash}}
+      run: git log --pretty=format:%s --ancestry-path ${{steps.get_commit.outputs.commit}}^..${{steps.hash.outputs.hash}}
+      
