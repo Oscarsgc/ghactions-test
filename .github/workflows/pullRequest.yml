@@ -6,8 +6,7 @@ name: Pull Request Action
 on:
   [pull_request]
 
-permissions:
-  contents: write
+permissions: write-all
 
 jobs:
   build:
@@ -40,7 +39,7 @@ jobs:
     - name: Comment Test Coverage
       uses: AthleticNet/comment-test-coverage@1.1
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ github.token }}
         path: ui/coverage/coverage-summary.json
         title: Karma Test Coverage
 
