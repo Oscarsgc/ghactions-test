@@ -41,11 +41,11 @@ jobs:
     - name: Print directory  
       run: |
         ls
-        "========"
+        echo "========"
         pwd
-        "========"
+        echo "========"
         cd coverage
-        "========"
+        echo "========"
         ls
         echo "========"
   
