@@ -1,0 +1,12 @@
+name: Post Release sample
+
+on:
+  release:
+    types: [published]
+
+jobs: 
+  print:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Print hello world
+      run: echo "hello world"
