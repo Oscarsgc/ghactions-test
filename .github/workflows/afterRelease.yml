@@ -2,7 +2,7 @@ name: Post Release sample
 
 on:
   release:
-    types: [published]
+    types: [released]
 
 jobs: 
   print:
