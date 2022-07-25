@@ -30,14 +30,14 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, '../coverage/karma-coverage'),
       include: 'src/**/!(*.spec).ts',
       exclude: 'src/main.ts',
-      reports: ['html', 'lcovonly', 'text-summary'],
+      reports: ['html', 'lcovonly', 'text-summary', 'json-summary'],
       fixWebpackSourcePaths: true
     },
     coverageIstanbulReporter: {
       dir: require('path').join(__dirname, '../coverage/istanbul-coverage'),
       include: '../src/**/!(*.spec).ts',
       exclude: '../src/main.ts',
-      reports: ['html', 'lcovonly', 'text-summary'],
+      reports: ['html', 'lcovonly', 'text-summary', 'json-summary'],
       fixWebpackSourcePaths: true
     },
     reporters: ['progress', 'kjhtml', 'spec', 'coverage-istanbul', 'coverage'],
