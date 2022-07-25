@@ -33,77 +33,63 @@ jobs:
       id: hash
       run: echo "::set-output name=hash::$(git rev-parse --short "$GITHUB_SHA")"
     
-    - name: Angular Test web app
+    - name: Build Angular Integration web app
       run: |
         cd ./ui
         npm install
-        npm run test --no-progress
+        npm run build
     
-    - name: Comment Test Coverage
-      uses: AthleticNet/comment-test-coverage@1.1
+    - name: Archive UI Integration Build
+      uses: vimtor/action-zip@v1
       with:
+        files: './ui/dist/'
+        recursive: true
+        dest: 'integration-release-${{steps.date.outputs.date}}.zip'
+
+    - name: Archive Full Build
+      uses: vimtor/action-zip@v1
+      with:
+        files: 'integration-release-${{steps.date.outputs.date}}.zip'
+        recursive: true        
+        dest: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
+    
+    - name: Bump version and push tag
+      id: tag_version
+      uses: mathieudutour/github-tag-action@v6.0
+      with:
+        github_token: ${{ secrets.GITHUB_TOKEN }}
+
+
+    - name: Get latest release details
+      id: release_details
+      uses: cardinalby/git-get-release-action@v1
+      env:
+        GITHUB_TOKEN: ${{ github.token }}
+      with:
+        latest: true
+
+    - name: Get Latest Release Commit
+      id: get_commit
+      uses: actions/github-script@0.9.0
+      with:
+        script: |
+          const commit = "${{fromJSON(steps.release_details.outputs.assets)[0].name}}".split('-').pop().split('.').shift();
+          core.setOutput('commit', commit);
+
+    - name: Show all commits from latest release to current commit
+      id: list_messages
+      run: git log --pretty=format:%s --ancestry-path ${{steps.get_commit.outputs.commit}}^..${{steps.hash.outputs.hash}} > ReleaseNotes.txt
+    
+
+    - name: Create a GitHub release
+      uses: ncipollo/release-action@v1
+      with:
+        tag: ${{ steps.tag_version.outputs.new_tag }}
+        name: Release ${{ steps.tag_version.outputs.new_tag }}
+        bodyFile: "./ReleaseNotes.txt" 
+        artifacts: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
         token: ${{ secrets.GITHUB_TOKEN }}
-        path: coverage/coverage-summary.json
-        title: Karma Test Coverage
-
-
-    # - name: Build Angular Integration web app
-    #   run: |
-    #     cd ./ui
-    #     npm install
-    #     npm run build
-    
-    # - name: Archive UI Integration Build
-    #   uses: vimtor/action-zip@v1
-    #   with:
-    #     files: './ui/dist/'
-    #     recursive: true
-    #     dest: 'integration-release-${{steps.date.outputs.date}}.zip'
-
-    # - name: Archive Full Build
-    #   uses: vimtor/action-zip@v1
-    #   with:
-    #     files: 'integration-release-${{steps.date.outputs.date}}.zip'
-    #     recursive: true        
-    #     dest: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
-    
-    # - name: Bump version and push tag
-    #   id: tag_version
-    #   uses: mathieudutour/github-tag-action@v6.0
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-
-
-    # - name: Get latest release details
-    #   id: release_details
-    #   uses: cardinalby/git-get-release-action@v1
-    #   env:
-    #     GITHUB_TOKEN: ${{ github.token }}
-    #   with:
-    #     latest: true
-
-    # - name: Get Latest Release Commit
-    #   id: get_commit
-    #   uses: actions/github-script@0.9.0
-    #   with:
-    #     script: |
-    #       const commit = "${{fromJSON(steps.release_details.outputs.assets)[0].name}}".split('-').pop().split('.').shift();
-    #       core.setOutput('commit', commit);
-
-    # - name: Show all commits from latest release to current commit
-    #   id: list_messages
-    #   run: git log --pretty=format:%s --ancestry-path ${{steps.get_commit.outputs.commit}}^..${{steps.hash.outputs.hash}} > ReleaseNotes.txt
-    
-
-    # - name: Create a GitHub release
-    #   uses: ncipollo/release-action@v1
-    #   with:
-    #     tag: ${{ steps.tag_version.outputs.new_tag }}
-    #     name: Release ${{ steps.tag_version.outputs.new_tag }}
-    #     bodyFile: "./ReleaseNotes.txt" 
-    #     artifacts: 'LS-release-${{github.run_number}}-${{steps.date.outputs.date}}-${{steps.hash.outputs.hash}}.zip'
-    #     token: ${{ secrets.GITHUB_TOKEN }}
-    # - name: Print Release Version
-    #   run: echo 'Released ${{ steps.tag_version.outputs.new_tag }} Build'
+    - name: Print Release Version
+      run: echo 'Released ${{ steps.tag_version.outputs.new_tag }} Build'
         
     
