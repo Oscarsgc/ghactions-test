@@ -48,6 +48,6 @@ Thumbs.db
 ui/node_modules
 ui/dist
 ui/package-lock.json
-
+ui/test-results
 coverage/*
 ui/coverage/*

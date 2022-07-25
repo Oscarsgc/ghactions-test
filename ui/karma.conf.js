@@ -12,12 +12,13 @@ module.exports = function (config) {
       require('karma-coverage-istanbul-reporter'),
       require('karma-coverage'),
       require('karma-spec-reporter'),
+      require('karma-junit-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    reporters: ['progress', 'kjhtml', 'spec', 'coverage-istanbul', 'coverage'],
+    reporters: ['progress', 'kjhtml', 'spec', 'coverage-istanbul', 'coverage','junit'],
     // coverageReporter: {
     //   dir: require('path').join(__dirname, '../coverage/karma-coverage'),
     //   include: 'src/**/!(*.spec).ts',
@@ -25,8 +26,15 @@ module.exports = function (config) {
     //   reports: ['html', 'lcovonly', 'text-summary', 'json-summary'],
     //   fixWebpackSourcePaths: true
     // },
+    junitReporter: {
+      outputDir: 'test-results', // results will be saved as $outputDir/$browserName.xml
+      outputFile: 'tests-results.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
+      suite: '', // suite will become the package name attribute in xml testsuite element
+      useBrowserName: false, // add browser name to report and classes names
+      properties: {}, // key value pair of properties to add to the <properties> section of the report
+      xmlVersion: null // use '1' if reporting to be per SonarQube 6.2 XML format
+    },
     coverageIstanbulReporter: {
-      // dir: require('path').join(__dirname, '../coverage/istanbul-coverage'),
       dir: './coverage',
       include: '../src/**/!(*.spec).ts',
       exclude: '../src/main.ts',
