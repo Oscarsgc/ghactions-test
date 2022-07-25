@@ -47,7 +47,6 @@ jobs:
       if: always()
       with:
         lcov-file: ui/coverage/lcov.info
-        delete-old-comments: true
     # - name: Comment Test Coverage
     #   uses: AthleticNet/comment-test-coverage@1.1
     #   with:
