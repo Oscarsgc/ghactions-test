@@ -18,15 +18,16 @@ module.exports = function (config) {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
     reporters: ['progress', 'kjhtml', 'spec', 'coverage-istanbul', 'coverage'],
-    coverageReporter: {
-      dir: require('path').join(__dirname, '../coverage/karma-coverage'),
-      include: 'src/**/!(*.spec).ts',
-      exclude: 'src/main.ts',
-      reports: ['html', 'lcovonly', 'text-summary', 'json-summary'],
-      fixWebpackSourcePaths: true
-    },
+    // coverageReporter: {
+    //   dir: require('path').join(__dirname, '../coverage/karma-coverage'),
+    //   include: 'src/**/!(*.spec).ts',
+    //   exclude: 'src/main.ts',
+    //   reports: ['html', 'lcovonly', 'text-summary', 'json-summary'],
+    //   fixWebpackSourcePaths: true
+    // },
     coverageIstanbulReporter: {
-      dir: require('path').join(__dirname, '../coverage/istanbul-coverage'),
+      // dir: require('path').join(__dirname, '../coverage/istanbul-coverage'),
+      dir: './coverage',
       include: '../src/**/!(*.spec).ts',
       exclude: '../src/main.ts',
       reports: ['html', 'lcovonly', 'text-summary', 'json-summary'],
