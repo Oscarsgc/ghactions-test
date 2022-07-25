@@ -35,7 +35,8 @@ jobs:
       run: |
         cd ./ui
         npm install
-        npm run test --no-progress
+        npm run test -- --no-watch --no-progress
+        
 
     - name: Print directory  
       run: |
