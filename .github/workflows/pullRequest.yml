@@ -36,18 +36,24 @@ jobs:
         npm install
         npm run test -- --no-watch --no-progress        
   
-    - name: Comment Test Coverage
-      uses: AthleticNet/comment-test-coverage@1.1
-      with:
-        token: ${{ github.token }}
-        path: ui/coverage/coverage-summary.json
-        title: Karma Test Coverage
-
     - name: Publish Test Results
       uses: EnricoMi/publish-unit-test-result-action@v1
       if: always()
       with:
         files: "ui/test-results/*.xml"
+    
+    - name: Test Coverage
+      uses: romeovs/lcov-reporter-action@v0.2.16
+      if: always()
+      with:
+        lcov-file: ui/coverage/lcov.info
+        delete-old-comments: true
+    # - name: Comment Test Coverage
+    #   uses: AthleticNet/comment-test-coverage@1.1
+    #   with:
+    #     token: ${{ github.token }}
+    #     path: ui/coverage/coverage-summary.json
+    #     title: Karma Test Coverage
 
     # - name: Build Angular Integration web app
     #   run: |
