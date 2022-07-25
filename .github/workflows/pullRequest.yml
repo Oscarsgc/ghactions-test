@@ -1,6 +1,6 @@
 # Workflow to build and deploy to Azure cloud the License Server UI  
 
-name: License Server CI/CD
+name: Pull Request Action
 
 # Controls when the workflow will run
 on:
