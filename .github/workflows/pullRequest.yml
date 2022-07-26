@@ -44,6 +44,7 @@ jobs:
     
     - name: Comment Test Coverage
       uses: AthleticNet/comment-test-coverage@1.1
+      if: always()
       with:
         token: ${{ github.token }}
         path: ui/coverage/coverage-summary.json
