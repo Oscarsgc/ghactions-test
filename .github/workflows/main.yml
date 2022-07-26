@@ -39,7 +39,15 @@ jobs:
 
     - name: Print latest tag
       run: echo  ${{ steps.current_tag.outputs.tag }}
-  
+    
+    - name: 'Get next minor version'
+      id: next_tag
+      uses: "WyriHaximus/github-action-next-semvers@v1"
+      with:
+        version: ${{ steps.current_tag.outputs.tag }}
+    
+    - name: Print next tag
+      run: echo  ${{ steps.next_tag.outputs.patch }}
     # - name: Build Angular Integration web app
     #   run: |
     #     cd ./ui
