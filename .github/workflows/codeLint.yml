@@ -5,7 +5,7 @@ on:
   workflow_dispatch:
   # or pull request events but only for the main branch
   pull_request:
-     branches: [ main ]
+     branches: [ master ]
 
 jobs:
   linting:
