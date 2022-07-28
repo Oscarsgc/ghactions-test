@@ -1,0 +1,41 @@
+.content {
+  padding: 20px;
+}
+
+table {
+  width: 100%;
+}
+
+.table-section {
+  margin-top: 5%;
+}
+
+th.mat-sort-header-sorted {
+  color: black;
+}
+
+.btn-section {
+  float: right;
+}
+
+.example-form-field {
+  margin-right: 20px;
+}
+
+.month-picker {
+  margin-left: 20px;
+}
+
+.mt-4 {
+  margin-top: auto;
+}
+
+h1 {
+  font-weight: 500;
+}
+
+.table-container {
+  position: relative;
+  height: 400px;
+  overflow: auto;
+}
