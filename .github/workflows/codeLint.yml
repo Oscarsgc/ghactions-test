@@ -4,8 +4,8 @@ name: Code linting
 on:
   workflow_dispatch:
   # or pull request events but only for the main branch
-  push:
-    branches: [ master ]
+  pull_request:
+     branches: [ main ]
 
 jobs:
   linting:
