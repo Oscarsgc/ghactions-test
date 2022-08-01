@@ -12,13 +12,13 @@ module.exports = function (config) {
       require('karma-coverage'),
       require('karma-spec-reporter'),
       require('karma-junit-reporter'),
-      require('karma-json-reporter'),
+      // require('karma-json-reporter'),
       require('@angular-devkit/build-angular/plugins/karma')
     ],
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    reporters: ['progress', 'kjhtml', 'spec', 'coverage', 'junit', 'json'],
+    reporters: ['progress', 'coverage'],
     junitReporter: {
       outputDir: require('path').join(__dirname, './test-results'), // results will be saved as $outputDir/$browserName.xml
       outputFile: 'tests-results.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
@@ -29,12 +29,11 @@ module.exports = function (config) {
       dir: require('path').join(__dirname, './test-results/karma-coverage'),
       include: 'src/**/!(*.spec).ts',
       exclude: 'src/main.ts',
-      reports: ['html', 'lcovonly', 'text-summary'],
-      fixWebpackSourcePaths: true
-    },
-    jsonReporter: {
-      stdout: false,
-      outputFile: './test-results/coverage-summary.json'
+      reporters:[
+        { type: 'html'},
+        { type: 'json-summary', subdir: '.', file: 'coverage-summary.json' },
+      ],
+      fixWebpackSourcePaths: true,
     },
     specReporter: {
       maxLogLines: 5, // limit number of lines logged per test
