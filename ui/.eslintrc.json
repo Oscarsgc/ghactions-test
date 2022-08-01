@@ -11,8 +11,7 @@
       "parserOptions": {
         "ecmaVersion": "latest",
         "project": [
-          "tsconfig.json",
-          "e2e/tsconfig.json"
+          "tsconfig.json"
         ],
         "plugins": [
           "@typescript-eslint",
@@ -22,7 +21,6 @@
       },
       "env": {
         "es6": true,
-        "node": true,
         "browser": true
       },
       "extends": [
@@ -31,20 +29,20 @@
         "plugin:@angular-eslint/template/process-inline-templates"
       ],
       "rules": {
-        "@angular-eslint/component-selector": [
-          "error",
-          {
-            "prefix": "app",
-            "style": "kebab-case",
-            "type": "element"
-          }
-        ],
         "@angular-eslint/directive-selector": [
           "error",
           {
-            "prefix": "lc",
-            "style": "camelCase",
-            "type": "attribute"
+            "type": "attribute",
+            "prefix": "app",
+            "style": "camelCase"
+          }
+        ],
+        "@angular-eslint/component-selector": [
+          "error",
+          {
+            "type": "element",
+            "prefix": "app",
+            "style": "kebab-case"
           }
         ]
       }
