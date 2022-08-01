@@ -18,7 +18,7 @@ module.exports = function (config) {
     client: {
       clearContext: false // leave Jasmine Spec Runner output visible in browser
     },
-    reporters: ['progress', 'coverage'],
+    reporters: ['progress', 'kjhtml', 'spec', 'coverage', 'junit'],
     junitReporter: {
       outputDir: require('path').join(__dirname, './test-results'), // results will be saved as $outputDir/$browserName.xml
       outputFile: 'tests-results.xml', // if included, results will be saved as $outputDir/$browserName/$outputFile
@@ -31,7 +31,9 @@ module.exports = function (config) {
       exclude: 'src/main.ts',
       reporters:[
         { type: 'html'},
-        { type: 'json-summary', subdir: '.', file: 'coverage-summary.json' },
+        { type: 'lcovonly'},
+        { type: 'text-summary', subdir: '../'},
+        { type: 'json-summary', subdir: '../', file: 'coverage-summary.json' },
       ],
       fixWebpackSourcePaths: true,
     },
