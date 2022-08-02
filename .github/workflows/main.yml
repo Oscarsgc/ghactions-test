@@ -22,7 +22,7 @@ jobs:
         collection: ./tests/LicenseServerAPIs.postman_collection.json
         environment: ./tests/LicenseServerAPIsEnv.postman_environment.json
         reporters: 'junit'
-        reporter: "{ \"junit\": { \"export\": \"./tests/newman-report.xml\" }"
+        # reporter: "{ \"junit\": { \"export\": \"./tests/newman-report.xml\" }"
     
     - name: showdetails
       run: |
