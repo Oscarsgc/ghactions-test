@@ -15,19 +15,13 @@ jobs:
       with:
         fetch-depth: 0
 
-    # - name: Run API tests
-    #   uses: matt-ball/newman-action@master
-    #   with:
-    #     collection: ./tests/LicenseServerAPIs.postman_collection.json
-    #     environment: ./tests/LicenseServerAPIsEnv.postman_environment.json
-         
-    - name: Run API Tests
+    - name: Run API tests
       id: run-newman
-      uses: anthonyvscode/newman-action@v1
+      uses: matt-ball/newman-action@master
       with:
         collection: ./tests/LicenseServerAPIs.postman_collection.json
         environment: ./tests/LicenseServerAPIsEnv.postman_environment.json
-        reporters: cli
-
+        reporters: '["cli"]'
+         
     - name: Output summary to console
       run: echo ${{ steps.run-newman.outputs.summary }}
