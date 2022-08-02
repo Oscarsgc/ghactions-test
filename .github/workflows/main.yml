@@ -4,8 +4,7 @@ on:
   push:
     branches: [ master ]
 
-permissions:
-  contents: write
+permissions: write-all
 
 jobs:
   test:
@@ -23,11 +22,6 @@ jobs:
         environment: ./tests/LicenseServerAPIsEnv.postman_environment.json
         reporters: '["junit"]'
         reporter: "{ \"junit\": { \"export\": \"./tests/newman-report.xml\" } }"
-    
-    - name: showdetails
-      run: |
-        cd newman
-        ls
 
     - name: Publish JUnit Report
       uses: mikepenz/action-junit-report@v3
