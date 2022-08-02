@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<testsuites name="LicenseServerAPIs" tests="33" time="39.796">
+  <testsuite name="devices" id="8bbf75e1-3872-43b1-a733-fce5a718c9c9" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="2.262">
+    <testcase name="Status test" time="2.262" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="2.262" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="customers" id="0100f70d-4d09-4f6a-874a-4e6767d732e1" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.190">
+    <testcase name="Status test" time="1.190" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.190" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="bundles" id="8a31b8f3-11eb-4876-9e66-46641d8b8fa2" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.035">
+    <testcase name="Status test" time="1.035" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.035" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="adminEmail" id="2cec00e5-861d-4c12-aaa5-7105fd70c95c" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="0.996">
+    <testcase name="Status test" time="0.996" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="subaccounts" id="0d4bc83b-30ec-4fcf-96ee-04e68ffedbf3" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.255">
+    <testcase name="Status test" time="1.255" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.255" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="subaccountAdminEmail" id="b072bfb6-29aa-49a8-aa38-d556e5824626" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.038">
+    <testcase name="Status test" time="1.038" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="projects" id="86fa6a10-ea14-40e4-ad1f-4ec2173bf078" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.094">
+    <testcase name="Status test" time="1.094" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.094" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="licenses" id="4ef7e83a-d9b5-4b9d-af34-5ddcd9f366cf" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.109">
+    <testcase name="Status test" time="1.109" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.109" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="licenseUsageDetails" id="51b5e12d-83f4-42af-9b59-dd7ff6c177e5" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.187">
+    <testcase name="Status test" time="1.187" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.187" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="bundles" id="21a90418-058d-4bb2-a231-86b605df342f" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.052">
+    <testcase name="Status test" time="1.052" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="customers" id="dc250e1f-017f-457a-89e0-ecfa7f0c6e09" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.012">
+    <testcase name="Status test" time="1.012" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="devices" id="acfc96f6-1630-4455-95c0-46bd7bf888da" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.003">
+    <testcase name="Status test" time="1.003" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="licenses" id="e29c0f9b-71a8-47e5-9b4c-5f71b0099878" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.021">
+    <testcase name="Status test" time="1.021" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="licenseUsageDetails" id="e4a3f250-611d-4b03-9a67-fce4c3575875" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.016">
+    <testcase name="Status test" time="1.016" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="projects" id="55dc18be-1b4d-44e3-b0d3-d1474c2186a8" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.081">
+    <testcase name="Status test" time="1.081" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="subaccounts" id="7ab3d8b2-2f76-49b0-8679-240c9a4c00cb" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.002">
+    <testcase name="Status test" time="1.002" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="bundles" id="0bb72a9d-b856-4d86-b774-ab0c50024c70" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.094">
+    <testcase name="Status test" time="1.094" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.094" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="customers" id="b014221b-ec62-4ed9-b1bc-ea0be7c80bd5" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.017">
+    <testcase name="Status test" time="1.017" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.017" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="devices" id="94957308-41ca-4d95-a9a0-1314e9c66f89" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.090">
+    <testcase name="Status test" time="1.090" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.090" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="licenses" id="79e3036e-dd7a-4ef3-a184-af0942b6954e" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.042">
+    <testcase name="Status test" time="1.042" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.042" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="licenseUsageDetails" id="fd81fa92-4e67-4a3e-b416-1f7e7f0e4f11" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.177">
+    <testcase name="Status test" time="1.177" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.177" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="projects" id="43a86355-e697-4cb1-a060-73f9d392c1c0" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="0.972">
+    <testcase name="Status test" time="0.972" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="0.972" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="subaccounts" id="70a4d717-1192-4f4e-9bf0-71a01542ce06" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.081">
+    <testcase name="Status test" time="1.081" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.081" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="usageDetails" id="e5862f4b-7cdd-4880-8d33-cd2d56d32e52" timestamp="2022-08-02T22:22:46.987Z" tests="2" failures="0" errors="0" time="1.002">
+    <testcase name="Status test" time="1.002" classname="LicenseServerApIs"/>
+    <testcase name="Response body test" time="1.002" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="adminEmail" id="e5e8302a-f7fb-46e8-85ac-38bc2714ad58" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="0.997">
+    <testcase name="Status test" time="0.997" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="subaccountAdminEmail" id="7260b336-5e71-4a67-8d90-1d1743365281" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.003">
+    <testcase name="Status test" time="1.003" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="licenseUsageDetails" id="603d50ec-75ba-49c3-a4f9-04e4303a4729" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.041">
+    <testcase name="Status test" time="1.041" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="licenses" id="ae5858d4-97a3-4ed7-9fb0-4bbaefe32679" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.070">
+    <testcase name="Status test" time="1.070" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="devices" id="e7ea2bb7-5a4d-4952-971b-9e63e747ebf2" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.106">
+    <testcase name="Status test" time="1.106" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="bundles" id="d59d3e17-84f0-4276-8f85-d0027de241de" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.043">
+    <testcase name="Status test" time="1.043" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="projects" id="af406c4a-a3ce-4717-bd91-56692d510f7a" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.068">
+    <testcase name="Status test" time="1.068" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="subaccounts" id="c4216209-ee12-44a9-8d84-61d3eae26e8c" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.107">
+    <testcase name="Status test" time="1.107" classname="LicenseServerApIs"/>
+  </testsuite>
+  <testsuite name="customers" id="2f397b80-fc86-453a-a30b-e3d9b6f64aff" timestamp="2022-08-02T22:22:46.987Z" tests="1" failures="0" errors="0" time="1.081">
+    <testcase name="Status test" time="1.081" classname="LicenseServerApIs"/>
+  </testsuite>
+</testsuites>
