@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     steps:
     - uses: actions/checkout@v2
@@ -21,7 +21,13 @@ jobs:
       with:
         collection: ./tests/LicenseServerAPIs.postman_collection.json
         environment: ./tests/LicenseServerAPIsEnv.postman_environment.json
-        reporters: cli
-         
-    - name: Output summary to console
-      run: echo ${{ steps.run-newman.outputs }}
+        reporters: '["junit"]'
+        reporter: "{ \"junit\": { \"export\": \"./tests/newman-report.xml\" }"
+        color: "on"
+
+    - name: Publish JUnit Report
+      uses: mikepenz/action-junit-report@v3
+      if: always() # always run even if the previous step fails
+      with:
+        report_paths: './tests/newman-report.xml'
+        summary: 'true'
