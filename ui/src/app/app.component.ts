@@ -7,5 +7,10 @@ import { Component } from '@angular/core';
 })
 
 export class AppComponent {
-  title = 'actions-test';
+  title: string;
+
+  constructor() {
+    const sampleTitle = "Aloha"
+    this.title = 'actions-test';
+  }
 }
