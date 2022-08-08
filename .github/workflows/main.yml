@@ -36,11 +36,11 @@ jobs:
       if: always()
       id: body-message
       run: |
-        if [[ "${{ steps.publish-results.outputs.failed }}" == 0 ]]; then
+        if [[ "${{ steps.publish-results.outputs.failed }}" == "0" ]]; then
           echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! All test passed!"
         fi
-        if [[ "${{ steps.publish-results.outputs.failed }}" != 0 ]]; then
-          echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! <br>But ${{ steps.publish-results.outputs.failed }} tests failed!<br>Please check logs"
+        if [[ "${{ steps.publish-results.outputs.failed }}" != "0" ]]; then
+          echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! But ${{ steps.publish-results.outputs.failed }} tests failed! Please check logs"
         fi
     
     - name: Send mail
