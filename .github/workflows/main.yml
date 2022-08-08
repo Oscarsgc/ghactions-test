@@ -31,8 +31,6 @@ jobs:
         report_paths: './tests/newman-report.xml'
         summary: 'true'
         check_name: 'API Test Report'
-    
-    - name: Set Mail Body
 
     - name: Send mail
       uses: dawidd6/action-send-mail@v3
