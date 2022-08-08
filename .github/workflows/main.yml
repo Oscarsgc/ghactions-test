@@ -26,11 +26,22 @@ jobs:
     - name: Publish JUnit Report
       uses: mikepenz/action-junit-report@v3
       id: publish-results
-      if: always() # always run even if the previous step fails
+      if: always()
       with:
         report_paths: './tests/newman-report.xml'
         summary: 'true'
         check_name: 'API Test Report'
+    
+    - name: Set Body Message 
+      if: always()
+      id: body-message
+      run: |
+        if [[ "${{ steps.publish-results.outputs.failed }}" == 0 ]]; then
+          echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! All test passed!"
+        fi
+        if [[ "${{ steps.publish-results.outputs.failed }}" != 0 ]]; then
+          echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! <br>But ${{ steps.publish-results.outputs.failed }} tests failed!<br>Please check logs"
+        fi
     
     - name: Send mail
       uses: dawidd6/action-send-mail@v3
@@ -44,6 +55,6 @@ jobs:
         to: oscar_sgc@icloud.com,ogonzalez@tekvizion.com
         from: Tekvizion Dev
         secure: true
-        body: Deploy job of ${{github.repository}} completed successfully! ${{ steps.publish-results.outputs.failed == 0 && 'All test passed!' || 'Some Tests failed, please check logs!'}}
+        body: ${{steps.body-message.outputs.mailBody}}
         convert_markdown: true
         priority: low
