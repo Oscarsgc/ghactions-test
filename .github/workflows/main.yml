@@ -25,8 +25,26 @@ jobs:
 
     - name: Publish JUnit Report
       uses: mikepenz/action-junit-report@v3
+      id: publish-results
       if: always() # always run even if the previous step fails
       with:
         report_paths: './tests/newman-report.xml'
         summary: 'true'
         check_name: 'API Test Report'
+    
+    - name: Set Mail Body
+
+    - name: Send mail
+      uses: dawidd6/action-send-mail@v3
+      with:
+        server_address: smtp.gmail.com
+        server_port: 465
+        username: ogonzalez@aitbol.com
+        password: ${{secrets.MAIL_PASSWORD}}
+        subject: Github Actions job result
+        to: oscar_sgc@icloud.com,ogonzalez@tekvizion.com
+        from: Tekvizion Dev
+        secure: true
+        body: Deploy job of ${{github.repository}} completed successfully! ${{ steps.publish-results.outputs.failed !== 0 && 'All test passed!' ||  'Some Tests failed, please check logs!'}}
+        convert_markdown: true
+        priority: low
