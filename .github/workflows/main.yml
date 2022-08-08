@@ -31,6 +31,9 @@ jobs:
         report_paths: './tests/newman-report.xml'
         summary: 'true'
         check_name: 'API Test Report'
+    
+    - name: Get color
+      run: echo "The selected color is ${{ steps.publish-results.outputs.failed }}"
 
     - name: Send mail
       uses: dawidd6/action-send-mail@v3
