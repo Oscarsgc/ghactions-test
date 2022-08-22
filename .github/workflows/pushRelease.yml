@@ -37,13 +37,11 @@ jobs:
             echo "${{ env.build_version }}"
 
         - name: Retrieve release assets
-          uses: dsaltares/fetch-gh-release-asset@master
+          uses: robinraju/release-downloader@v1.4
           with:
-            version: 'tags/v${{ env.build_version }}'
-            regex: true
-            file: "Source"
-            target: "./"
-        
+            tag: 'v${{ env.build_version }}'
+            zipBall: true
+
         - name: List content
           run: |
             ls
