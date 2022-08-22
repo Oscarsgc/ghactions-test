@@ -53,7 +53,7 @@ jobs:
           with:
             command: x
             cwd: .
-            files: '*.tar.gz'
+            files: *.tar.gz
         
         # - name: Unzip Release Folder
         #   run: unzip -qq *.zip -d Release
