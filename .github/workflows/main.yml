@@ -60,7 +60,7 @@ jobs:
     #     priority: low
   
     - name: Add Release version file
-      run: echo "Build-v0.0.45" > ./ReleaseVersion.txt
+      run: echo "Build-0.0.45" > ./ReleaseVersion.txt
 
     - name: Released Version
       uses: actions/upload-artifact@v3
