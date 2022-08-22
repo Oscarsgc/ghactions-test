@@ -56,6 +56,7 @@ jobs:
         - name: Checkout specific commit 
           uses: actions/checkout@v3
           with:
+            fetch-depth: 0
             ref: ${{steps.get_commit.outputs.commit}}
 
         - name: Check if file is present
