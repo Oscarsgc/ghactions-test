@@ -13,9 +13,6 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-    
-    - name: Add Release version file
-      run: echo "Released xx Build" > ./ReleaseVersion.txt
 
     # - name: Run API tests
     #   id: run-newman
@@ -61,7 +58,11 @@ jobs:
     #     body: ${{steps.body-message.outputs.mailBody}}
     #     convert_markdown: true
     #     priority: low
-    - name: Archive code coverage results
+  
+    - name: Add Release version file
+      run: echo "Build-v0.0.45" > ./ReleaseVersion.txt
+
+    - name: Released Version
       uses: actions/upload-artifact@v3
       with:
         name: prod-released-version

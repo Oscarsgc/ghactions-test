@@ -26,9 +26,23 @@ jobs:
             workflow_conclusion: success        
         
         - name: List release version
+          id: release-version
           run: |
             ls
             cat ./ReleaseVersion.txt
+            echo '::set-output name=version::$(cat ./ReleaseVersion.txt | cut -d "-" -f2-)'
+        
+        - name: Retrieve release assets
+          uses: dsaltares/fetch-gh-release-asset@master
+          with:
+            version: '${{ steps.release_version.outputs.version }}'
+            regex: true
+            file: "LS"
+            target: "./"
+        
+        - name: List release version
+          run: |
+            ls
         # - name: Retrieve release assets
         #   id: release_download
         #   uses: dsaltares/fetch-gh-release-asset@master
