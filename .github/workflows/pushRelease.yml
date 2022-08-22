@@ -42,7 +42,6 @@ jobs:
             tag: 'v${{ env.build_version }}'
             zipBall: true
 
-
         - name: List content
           run: |
             ls
@@ -50,10 +49,10 @@ jobs:
         - name: Unzip Release Folder
           run: unzip -qq ${{ github.event.repository.name }}*.zip -d Release
         
-        # - name: Check if file is present
-        #   run: |
-        #     cd Release
-        #     ls
+        - name: Check if file is present
+          run: |
+            cd Release
+            ls
         
         # - name: Unzip Source Code
         #   run: unzip -qq integration*.zip -d Integration-build
