@@ -43,7 +43,7 @@ jobs:
         - name: Retrieve release assets
           uses: dsaltares/fetch-gh-release-asset@master
           with:
-            version: '${{ steps.release-version.outputs.version }}'
+            version: '${{ env.build_version }}'
             regex: true
             file: "LS"
             target: "./"
