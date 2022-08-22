@@ -45,6 +45,19 @@ jobs:
         - name: List content
           run: |
             ls
+        
+        - name: Unzip Release Folder
+          run: unzip -qq *.zip -d Release
+        
+        - name: Check if file is present
+          run: |
+            cd Release
+            ls
+        
+        # - name: Unzip Source Code
+        #   run: unzip -qq integration*.zip -d Integration-build
+        #   working-directory: Release
+
         # - name: Retrieve release assets
         #   id: release_download
         #   uses: dsaltares/fetch-gh-release-asset@master
