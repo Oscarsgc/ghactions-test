@@ -31,10 +31,14 @@ jobs:
             ls
             cat ./ReleaseVersion.txt
             echo '::set-output name=version::$(cat ./ReleaseVersion.txt | cut -d "-" -f2-)'
+            echo "build_version=$(cat ./ReleaseVersion.txt | cut -d "-" -f2-)" >> $GITHUB_ENV
+
         
         - name: print release version
           run: |
             echo ${{ steps.release-version.outputs.version }}
+            echo "${{ env.build_version }}"
+
         
         - name: Retrieve release assets
           uses: dsaltares/fetch-gh-release-asset@master
