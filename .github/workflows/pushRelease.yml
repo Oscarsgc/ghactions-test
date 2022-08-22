@@ -41,18 +41,20 @@ jobs:
           with:
             tag: 'v${{ env.build_version }}'
             zipBall: true
+            tarBall: true
+
 
         - name: List content
           run: |
             ls
         
-        - name: Unzip Release Folder
-          run: unzip -qq *.zip -d Release
+        # - name: Unzip Release Folder
+        #   run: unzip -qq *.zip -d Release
         
-        - name: Check if file is present
-          run: |
-            cd Release
-            ls
+        # - name: Check if file is present
+        #   run: |
+        #     cd Release
+        #     ls
         
         # - name: Unzip Source Code
         #   run: unzip -qq integration*.zip -d Integration-build
