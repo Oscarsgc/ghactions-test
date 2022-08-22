@@ -48,7 +48,7 @@ jobs:
             ls
         
         - name: Unzip Release Folder
-          run: unzip -qq ${{ github.repository }}*.zip -d Release
+          run: unzip -qq ${{ github.event.repository.name }}*.zip -d Release
         
         # - name: Check if file is present
         #   run: |
