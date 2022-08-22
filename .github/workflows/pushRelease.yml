@@ -42,7 +42,7 @@ jobs:
           env:
             GITHUB_TOKEN: ${{ github.token }}
           with:
-            tag: ${{ env.build_version }}  
+            tag: 0.0.45
         
         - name: Show details
           run: |
