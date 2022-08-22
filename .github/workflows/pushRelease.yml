@@ -32,6 +32,10 @@ jobs:
             cat ./ReleaseVersion.txt
             echo '::set-output name=version::$(cat ./ReleaseVersion.txt | cut -d "-" -f2-)'
         
+        - name: print release version
+          run: |
+            echo ${{ steps.release-version.outputs.version }}
+        
         - name: Retrieve release assets
           uses: dsaltares/fetch-gh-release-asset@master
           with:
@@ -40,7 +44,7 @@ jobs:
             file: "LS"
             target: "./"
         
-        - name: List release version
+        - name: List content
           run: |
             ls
         # - name: Retrieve release assets
