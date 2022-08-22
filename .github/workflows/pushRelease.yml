@@ -30,23 +30,36 @@ jobs:
           run: |
             ls
             cat ./ReleaseVersion.txt
-            echo '::set-output name=version::$(cat ./ReleaseVersion.txt | cut -d "-" -f2-)'
-        
+            echo "build_version=$(cat ./ReleaseVersion.txt | cut -d "-" -f2-)" >> $GITHUB_ENV
+
         - name: print release version
           run: |
-            echo ${{ steps.release-version.outputs.version }}
-        
-        - name: Retrieve release assets
-          uses: dsaltares/fetch-gh-release-asset@master
+            echo "${{ env.build_version }}"
+
+        - name: Get release details
+          id: release_details
+          uses: cardinalby/git-get-release-action@v1
+          env:
+            GITHUB_TOKEN: ${{ github.token }}
           with:
-            version: 'tags/v${{ steps.release-version.outputs.version }}'
-            regex: true
-            file: "LS"
-            target: "./"
+            tag: ${{ env.build_version }}  
         
-        - name: List content
+        - name: Show details
           run: |
-            ls
+            echo 'Released ${{ steps.release_details.outputs.target_commitish }} Build'
+          
+
+        # - name: Retrieve release assets
+        #   uses: dsaltares/fetch-gh-release-asset@master
+        #   with:
+        #     version: 'tags/v${{ env.build_version }}'
+        #     regex: true
+        #     file: "LS"
+        #     target: "./"
+        
+        # - name: List content
+        #   run: |
+        #     ls
         # - name: Retrieve release assets
         #   id: release_download
         #   uses: dsaltares/fetch-gh-release-asset@master
