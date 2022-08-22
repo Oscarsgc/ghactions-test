@@ -17,80 +17,81 @@ jobs:
       steps:
         # - name: Install Zip
         #   uses: montudor/action-zip@v1
-        - name: Download artifact
-          uses: dawidd6/action-download-artifact@v2
-          with:
-            github_token: ${{secrets.GITHUB_TOKEN}}
-            workflow: main.yml
-            name: prod-released-version
-            workflow_conclusion: success        
-        
-        - name: List release version
-          id: release-version
-          run: |
-            ls
-            cat ./ReleaseVersion.txt
-            echo "build_version=$(cat ./ReleaseVersion.txt | cut -d "-" -f2-)" >> $GITHUB_ENV
-
-        
-        - name: print release version
-          run: |
-            echo "${{ env.build_version }}"
-
-        - name: Get release details
-          id: release_details
-          uses: cardinalby/git-get-release-action@v1
-          env:
-            GITHUB_TOKEN: ${{ github.token }}
-          with:
-            tag: v${{ env.build_version }}
-        
-        - name: Get Latest Release commit hash
-          id: get_commit
-          uses: actions/github-script@0.9.0
-          with:
-            script: |
-              const commit = "${{fromJSON(steps.release_details.outputs.assets)[0].name}}".split('-').pop().split('.').shift();
-              core.setOutput('commit', commit);
-        
-        - name: Checkout specific commit 
-          uses: actions/checkout@v3
-          with:
-            fetch-depth: 0
-          
-        - run: git checkout ${{steps.get_commit.outputs.commit}}
-
-        - name: Check if file is present
-          run: |
-            ls
-        
-        # - name: Retrieve release assets
-        #   id: release_download
-        #   uses: dsaltares/fetch-gh-release-asset@master
+        - run: echo ${{ github.event.inputs.release_version }}
+        # - name: Download artifact
+        #   uses: dawidd6/action-download-artifact@v2
         #   with:
-        #     version: '${{ github.event.inputs.release_version }}'
-        #     regex: true
-        #     file: "LS"
-        #     target: "./"
+        #     github_token: ${{secrets.GITHUB_TOKEN}}
+        #     workflow: main.yml
+        #     name: prod-released-version
+        #     workflow_conclusion: success        
         
-        # - name: Unzip Release Folder
-        #   run: unzip -qq *.zip -d Release
-        
-        # - name: Check if file is present
+        # - name: List release version
+        #   id: release-version
         #   run: |
-        #     cd Release
         #     ls
-      
-        # - name: Unzip Integration UI
-        #   run: unzip -qq integration*.zip -d Integration-build
-        #   working-directory: Release
+        #     cat ./ReleaseVersion.txt
+        #     echo "build_version=$(cat ./ReleaseVersion.txt | cut -d "-" -f2-)" >> $GITHUB_ENV
+
+        
+        # - name: print release version
+        #   run: |
+        #     echo "${{ env.build_version }}"
+
+        # - name: Get release details
+        #   id: release_details
+        #   uses: cardinalby/git-get-release-action@v1
+        #   env:
+        #     GITHUB_TOKEN: ${{ github.token }}
+        #   with:
+        #     tag: v${{ env.build_version }}
+        
+        # - name: Get Latest Release commit hash
+        #   id: get_commit
+        #   uses: actions/github-script@0.9.0
+        #   with:
+        #     script: |
+        #       const commit = "${{fromJSON(steps.release_details.outputs.assets)[0].name}}".split('-').pop().split('.').shift();
+        #       core.setOutput('commit', commit);
+        
+        # - name: Checkout specific commit 
+        #   uses: actions/checkout@v3
+        #   with:
+        #     fetch-depth: 0
+          
+        # - run: git checkout ${{steps.get_commit.outputs.commit}}
 
         # - name: Check if file is present
         #   run: |
-        #     cd Release/Integration-build/actions-test
-        #     echo "Released ${{ steps.release_download.outputs.version }} Build" > Build.txt
         #     ls
-        #     cat Build.txt
         
-        # - name: Print deployed Release Version
-        #   run: echo 'Released ${{ steps.release_download.outputs.version }} Build'
+        # # - name: Retrieve release assets
+        # #   id: release_download
+        # #   uses: dsaltares/fetch-gh-release-asset@master
+        # #   with:
+        # #     version: '${{ github.event.inputs.release_version }}'
+        # #     regex: true
+        # #     file: "LS"
+        # #     target: "./"
+        
+        # # - name: Unzip Release Folder
+        # #   run: unzip -qq *.zip -d Release
+        
+        # # - name: Check if file is present
+        # #   run: |
+        # #     cd Release
+        # #     ls
+      
+        # # - name: Unzip Integration UI
+        # #   run: unzip -qq integration*.zip -d Integration-build
+        # #   working-directory: Release
+
+        # # - name: Check if file is present
+        # #   run: |
+        # #     cd Release/Integration-build/actions-test
+        # #     echo "Released ${{ steps.release_download.outputs.version }} Build" > Build.txt
+        # #     ls
+        # #     cat Build.txt
+        
+        # # - name: Print deployed Release Version
+        # #   run: echo 'Released ${{ steps.release_download.outputs.version }} Build'
