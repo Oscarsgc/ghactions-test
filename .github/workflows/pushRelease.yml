@@ -52,8 +52,8 @@ jobs:
           id: extract
           with:
             command: x
-            cwd: .
-            files: *.tar.gz
+            cwd: ./
+            files: '*.tar.gz'
         
         # - name: Unzip Release Folder
         #   run: unzip -qq *.zip -d Release
