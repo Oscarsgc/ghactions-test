@@ -15,13 +15,15 @@ jobs:
   build:
       runs-on: ubuntu-latest
       steps:
-        - name: Install Zip
-          uses: montudor/action-zip@v1
-
-        - name: Download a single artifact
-          uses: actions/download-artifact@v3
+        # - name: Install Zip
+        #   uses: montudor/action-zip@v1
+        - name: Download artifact
+          uses: dawidd6/action-download-artifact@v2
           with:
+            github_token: ${{secrets.GITHUB_TOKEN}}
+            workflow: main.yml
             name: prod-released-version
+            workflow_conclusion: success        
         
         - name: List release version
           run: |
