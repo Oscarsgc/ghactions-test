@@ -41,7 +41,7 @@ jobs:
           with:
             version: 'tags/v${{ env.build_version }}'
             regex: true
-            file: "Source Code"
+            file: "Source"
             target: "./"
         
         - name: List content
