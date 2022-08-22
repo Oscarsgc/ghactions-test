@@ -18,33 +18,41 @@ jobs:
         - name: Install Zip
           uses: montudor/action-zip@v1
 
-        - name: Retrieve release assets
-          id: release_download
-          uses: dsaltares/fetch-gh-release-asset@master
+        - name: Download a single artifact
+          uses: actions/download-artifact@v3
           with:
-            version: '${{ github.event.inputs.release_version }}'
-            regex: true
-            file: "LS"
-            target: "./"
+            name: prod-released-version
         
-        - name: Unzip Release Folder
-          run: unzip -qq *.zip -d Release
-        
-        - name: Check if file is present
+        - name: List release version
           run: |
-            cd Release
             ls
+        # - name: Retrieve release assets
+        #   id: release_download
+        #   uses: dsaltares/fetch-gh-release-asset@master
+        #   with:
+        #     version: '${{ github.event.inputs.release_version }}'
+        #     regex: true
+        #     file: "LS"
+        #     target: "./"
+        
+        # - name: Unzip Release Folder
+        #   run: unzip -qq *.zip -d Release
+        
+        # - name: Check if file is present
+        #   run: |
+        #     cd Release
+        #     ls
       
-        - name: Unzip Integration UI
-          run: unzip -qq integration*.zip -d Integration-build
-          working-directory: Release
+        # - name: Unzip Integration UI
+        #   run: unzip -qq integration*.zip -d Integration-build
+        #   working-directory: Release
 
-        - name: Check if file is present
-          run: |
-            cd Release/Integration-build/actions-test
-            echo "Released ${{ steps.release_download.outputs.version }} Build" > Build.txt
-            ls
-            cat Build.txt
+        # - name: Check if file is present
+        #   run: |
+        #     cd Release/Integration-build/actions-test
+        #     echo "Released ${{ steps.release_download.outputs.version }} Build" > Build.txt
+        #     ls
+        #     cat Build.txt
         
-        - name: Print deployed Release Version
-          run: echo 'Released ${{ steps.release_download.outputs.version }} Build'
+        # - name: Print deployed Release Version
+        #   run: echo 'Released ${{ steps.release_download.outputs.version }} Build'

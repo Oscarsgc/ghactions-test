@@ -13,48 +13,56 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-
-    - name: Run API tests
-      id: run-newman
-      uses: matt-ball/newman-action@master
-      with:
-        collection: ./tests/LicenseServerAPIs.postman_collection.json
-        environment: ./tests/LicenseServerAPIsEnv.postman_environment.json
-        reporters: '["junit", "cli"]'
-        reporter: "{ \"junit\": { \"export\": \"./tests/newman-report.xml\" } }"
-
-    - name: Publish JUnit Report
-      uses: mikepenz/action-junit-report@v3
-      id: publish-results
-      if: always()
-      with:
-        report_paths: './tests/newman-report.xml'
-        summary: 'true'
-        check_name: 'API Test Report'
     
-    - name: Set Body Message 
-      if: always()
-      id: body-message
-      run: |
-        if [[ "${{ steps.publish-results.outputs.failed }}" == "0" ]]; then
-          echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! All test passed!"
-        fi
-        if [[ "${{ steps.publish-results.outputs.failed }}" != "0" ]]; then
-          echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! But ${{ steps.publish-results.outputs.failed }} tests failed! Please check logs"
-        fi
+    - name: Add Release version file
+      run: echo "Released xx Build" > ./ReleaseVersion.txt
+
+    # - name: Run API tests
+    #   id: run-newman
+    #   uses: matt-ball/newman-action@master
+    #   with:
+    #     collection: ./tests/LicenseServerAPIs.postman_collection.json
+    #     environment: ./tests/LicenseServerAPIsEnv.postman_environment.json
+    #     reporters: '["junit", "cli"]'
+    #     reporter: "{ \"junit\": { \"export\": \"./tests/newman-report.xml\" } }"
+
+    # - name: Publish JUnit Report
+    #   uses: mikepenz/action-junit-report@v3
+    #   id: publish-results
+    #   if: always()
+    #   with:
+    #     report_paths: './tests/newman-report.xml'
+    #     summary: 'true'
+    #     check_name: 'API Test Report'
     
-    - name: Send mail
-      uses: dawidd6/action-send-mail@v3
-      if: always() 
+    # - name: Set Body Message 
+    #   if: always()
+    #   id: body-message
+    #   run: |
+    #     if [[ "${{ steps.publish-results.outputs.failed }}" == "0" ]]; then
+    #       echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! All test passed!"
+    #     fi
+    #     if [[ "${{ steps.publish-results.outputs.failed }}" != "0" ]]; then
+    #       echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! But ${{ steps.publish-results.outputs.failed }} tests failed! Please check logs"
+    #     fi
+    
+    # - name: Send mail
+    #   uses: dawidd6/action-send-mail@v3
+    #   if: always() 
+    #   with:
+    #     server_address: smtp.gmail.com
+    #     server_port: 465
+    #     username: ogonzalez@aitbol.com
+    #     password: ${{secrets.MAIL_PASSWORD}}
+    #     subject: Github Actions job result
+    #     to: oscar_sgc@icloud.com,ogonzalez@tekvizion.com
+    #     from: Tekvizion Dev
+    #     secure: true
+    #     body: ${{steps.body-message.outputs.mailBody}}
+    #     convert_markdown: true
+    #     priority: low
+    - name: Archive code coverage results
+      uses: actions/upload-artifact@v3
       with:
-        server_address: smtp.gmail.com
-        server_port: 465
-        username: ogonzalez@aitbol.com
-        password: ${{secrets.MAIL_PASSWORD}}
-        subject: Github Actions job result
-        to: oscar_sgc@icloud.com,ogonzalez@tekvizion.com
-        from: Tekvizion Dev
-        secure: true
-        body: ${{steps.body-message.outputs.mailBody}}
-        convert_markdown: true
-        priority: low
+        name: prod-released-version
+        path: ./ReleaseVersion.txt
