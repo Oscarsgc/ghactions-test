@@ -58,6 +58,13 @@ jobs:
     #     body: ${{steps.body-message.outputs.mailBody}}
     #     convert_markdown: true
     #     priority: low
+    - name: Delete workflow runs
+      uses: MajorScruffy/delete-old-workflow-runs@v0.1.0
+      with:
+        repository: Oscarsgc/ghactions-test   # replace this with your own repository
+        older-than-seconds: 86400                           # remove all workflow runs older than 1 day
+      env:
+        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
     - name: Add Release version file
       run: echo "Build-0.0.45" > ./ReleaseVersion.txt
