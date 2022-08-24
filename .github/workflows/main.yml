@@ -59,13 +59,12 @@ jobs:
     #     convert_markdown: true
     #     priority: low
     - name: Delete workflow runs
-      uses: MajorScruffy/delete-old-workflow-runs@v0.1.0
+      uses: Mattraks/delete-workflow-runs@v2
       with:
-        repository: Oscarsgc/ghactions-test
-        older-than-seconds: 86400
-        what-if: true
-      env:
-        GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        token: ${{ github.token }}
+        repository: ${{ github.repository }}
+        retain_days: 2
+        keep_minimum_runs: 5
   
     - name: Add Release version file
       run: echo "Build-0.0.45" > ./ReleaseVersion.txt
