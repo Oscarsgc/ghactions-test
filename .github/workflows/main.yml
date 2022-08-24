@@ -63,7 +63,7 @@ jobs:
       with:
         repository: Oscarsgc/ghactions-test
         older-than-seconds: 86400
-        what-if: false
+        what-if: 'false'
       env:
         GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
   
