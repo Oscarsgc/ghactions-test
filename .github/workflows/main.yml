@@ -19,8 +19,8 @@ jobs:
       with:
         path: ./tests/prod.properties
         contents: |
-          username=${{ secrets.username }}
-          password=${{ secrets.password }}
+          username=${{ secrets.USERNAME }}
+          password=${{ secrets.MAIL_PASSWORD }}
         write-mode: append
 
     - name: Archive Release Build Version
