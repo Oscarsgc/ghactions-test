@@ -13,6 +13,22 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
+      
+    - name: Set Production test credentials
+      uses: DamianReeves/write-file-action@master
+      with:
+        path: ./tests/prod.properties
+        contents: |
+          username=${{ secrets.username }}
+          password=${{ secrets.password }}
+        write-mode: append
+
+    - name: Archive Release Build Version
+      uses: actions/upload-artifact@v3
+      with:
+        name: conf-file
+        path: ./tests/prod.properties
+
 
     # - name: Run API tests
     #   id: run-newman
@@ -58,19 +74,19 @@ jobs:
     #     body: ${{steps.body-message.outputs.mailBody}}
     #     convert_markdown: true
     #     priority: low
-    - name: Delete workflow runs
-      uses: Mattraks/delete-workflow-runs@v2
-      with:
-        token: ${{ github.token }}
-        repository: ${{ github.repository }}
-        retain_days: 2
-        keep_minimum_runs: 5
+    # - name: Delete workflow runs
+    #   uses: Mattraks/delete-workflow-runs@v2
+    #   with:
+    #     token: ${{ github.token }}
+    #     repository: ${{ github.repository }}
+    #     retain_days: 2
+    #     keep_minimum_runs: 5
   
-    - name: Add Release version file
-      run: echo "Build-0.0.45" > ./ReleaseVersion.txt
+    # - name: Add Release version file
+    #   run: echo "Build-0.0.45" > ./ReleaseVersion.txt
 
-    - name: Released Version
-      uses: actions/upload-artifact@v3
-      with:
-        name: prod-released-version
-        path: ./ReleaseVersion.txt
+    # - name: Released Version
+    #   uses: actions/upload-artifact@v3
+    #   with:
+    #     name: prod-released-version
+    #     path: ./ReleaseVersion.txt
