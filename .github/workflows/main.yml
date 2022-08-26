@@ -16,7 +16,7 @@ jobs:
       
     - name: Set Production test credentials
       run: |
-        echo -e "username=${{ secrets.USERNAME }}" >> ./tests/prod.properties
+        echo -e "\nusername=${{ secrets.USERNAME }}" >> ./tests/prod.properties
         echo -e "password=${{ secrets.MAIL_PASSWORD }}" >> ./tests/prod.properties
       # uses: DamianReeves/write-file-action@master
       # with:
