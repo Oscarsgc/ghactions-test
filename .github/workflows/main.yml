@@ -15,13 +15,16 @@ jobs:
         fetch-depth: 0
       
     - name: Set Production test credentials
-      uses: DamianReeves/write-file-action@master
-      with:
-        path: ./tests/prod.properties
-        contents: |
-          username=${{ secrets.USERNAME }}
-          password=${{ secrets.MAIL_PASSWORD }}
-        write-mode: append
+      run: |
+        echo -e "username=${{ secrets.USERNAME }}" >> ./tests/prod.properties
+        echo -e "password=${{ secrets.MAIL_PASSWORD }}" >> ./tests/prod.properties
+      # uses: DamianReeves/write-file-action@master
+      # with:
+      #   path: ./tests/prod.properties
+      #   contents: |
+      #     username=${{ secrets.USERNAME }}
+      #     password=${{ secrets.MAIL_PASSWORD }}
+      #   write-mode: append
 
     - name: Archive Release Build Version
       uses: actions/upload-artifact@v3
