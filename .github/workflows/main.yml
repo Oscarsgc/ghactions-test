@@ -3,6 +3,8 @@ name: License Server CI/CD
 on:
   push:
     branches: [ master ]
+    paths-ignore:
+      - ".github/**"
 
 permissions: write-all
 
