@@ -29,8 +29,8 @@ jobs:
       with:
         find: "[build_version]"
         replace: "${{ steps.next_tag.outputs.patch }}"
-        include: "./ui/src/generics/about-modal/**"
+        include: "./ui/src/app/generics/about-modal/**"
         regex: false
     
     - name: Print File
-      run: cat ./ui/src/generics/about-modal/about-modal.component.html
+      run: cat ./ui/src/app/generics/about-modal/about-modal.component.html
