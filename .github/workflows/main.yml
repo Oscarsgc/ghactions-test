@@ -4,7 +4,6 @@ on:
   push:
     branches: [ master ]
     
-
 permissions: write-all
 
 jobs:
@@ -14,83 +13,24 @@ jobs:
     - uses: actions/checkout@v2
       with:
         fetch-depth: 0
-      
-    - name: Set Production test credentials
-      run: |
-        echo -e "\nusername=${{ secrets.USERNAME }}" >> ./tests/prod.properties
-        echo -e "password=${{ secrets.MAIL_PASSWORD }}" >> ./tests/prod.properties
-      # uses: DamianReeves/write-file-action@master
-      # with:
-      #   path: ./tests/prod.properties
-      #   contents: |
-      #     username=${{ secrets.USERNAME }}
-      #     password=${{ secrets.MAIL_PASSWORD }}
-      #   write-mode: append
-
-    - name: Archive Release Build Version
-      uses: actions/upload-artifact@v3
+    
+    - name: Get Latest tag
+      id: current_tag
+      uses: "WyriHaximus/github-action-get-previous-tag@v1"
+    
+    - name: 'Get next minor version'
+      id: next_tag
+      uses: "WyriHaximus/github-action-next-semvers@v1"
       with:
-        name: conf-file
-        path: ./tests/prod.properties
-
-
-    # - name: Run API tests
-    #   id: run-newman
-    #   uses: matt-ball/newman-action@master
-    #   with:
-    #     collection: ./tests/LicenseServerAPIs.postman_collection.json
-    #     environment: ./tests/LicenseServerAPIsEnv.postman_environment.json
-    #     reporters: '["junit", "cli"]'
-    #     reporter: "{ \"junit\": { \"export\": \"./tests/newman-report.xml\" } }"
-
-    # - name: Publish JUnit Report
-    #   uses: mikepenz/action-junit-report@v3
-    #   id: publish-results
-    #   if: always()
-    #   with:
-    #     report_paths: './tests/newman-report.xml'
-    #     summary: 'true'
-    #     check_name: 'API Test Report'
+        version: ${{ steps.current_tag.outputs.tag }}
+      
+    - name: Replace Build Version
+      uses: jacobtomlinson/gha-find-replace@v2
+      with:
+        find: "[build_version]"
+        replace: "${{ steps.next_tag.outputs.patch }}"
+        include: "./ui/src/generics/about-modal/**"
+        regex: false
     
-    # - name: Set Body Message 
-    #   if: always()
-    #   id: body-message
-    #   run: |
-    #     if [[ "${{ steps.publish-results.outputs.failed }}" == "0" ]]; then
-    #       echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! All test passed!"
-    #     fi
-    #     if [[ "${{ steps.publish-results.outputs.failed }}" != "0" ]]; then
-    #       echo "::set-output name=mailBody::Deploy job of ${{github.repository}} completed successfully! But ${{ steps.publish-results.outputs.failed }} tests failed! Please check logs"
-    #     fi
-    
-    # - name: Send mail
-    #   uses: dawidd6/action-send-mail@v3
-    #   if: always() 
-    #   with:
-    #     server_address: smtp.gmail.com
-    #     server_port: 465
-    #     username: ogonzalez@aitbol.com
-    #     password: ${{secrets.MAIL_PASSWORD}}
-    #     subject: Github Actions job result
-    #     to: oscar_sgc@icloud.com,ogonzalez@tekvizion.com
-    #     from: Tekvizion Dev
-    #     secure: true
-    #     body: ${{steps.body-message.outputs.mailBody}}
-    #     convert_markdown: true
-    #     priority: low
-    # - name: Delete workflow runs
-    #   uses: Mattraks/delete-workflow-runs@v2
-    #   with:
-    #     token: ${{ github.token }}
-    #     repository: ${{ github.repository }}
-    #     retain_days: 2
-    #     keep_minimum_runs: 5
-  
-    # - name: Add Release version file
-    #   run: echo "Build-0.0.45" > ./ReleaseVersion.txt
-
-    # - name: Released Version
-    #   uses: actions/upload-artifact@v3
-    #   with:
-    #     name: prod-released-version
-    #     path: ./ReleaseVersion.txt
+    - name: Print File
+      run: cat ./ui/src/generics/about-modal/about-modal.component.html
