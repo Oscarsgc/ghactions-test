@@ -22,7 +22,7 @@ jobs:
         ls
     
     - name: Unzip Release Folder
-      run: unzip -qq *.zip -d Release
+      run: unzip -qq ${{ github.repository }}*.zip -d Release
     
     - name: List files
       run: |
