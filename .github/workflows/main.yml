@@ -27,6 +27,8 @@ jobs:
     - name: List files
       run: |
         ls
+        cd Release
+        ls
     
     # - name: Get Latest tag
     #   id: current_tag
