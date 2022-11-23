@@ -16,7 +16,7 @@ jobs:
 
     - uses: robinraju/release-downloader@v1.6
       with:
-        tag: "latest"
+        latest: true
         zipBall: true
     
     - name: List files
