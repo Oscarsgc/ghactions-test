@@ -10,9 +10,6 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-    - uses: actions/checkout@v2
-      with:
-        fetch-depth: 0
 
     - uses: robinraju/release-downloader@v1.6
       with:
@@ -23,7 +20,13 @@ jobs:
       run: |
         pwd
         ls
-
+    
+    - name: Unzip Release Folder
+      run: unzip -qq *.zip -d Release
+    
+    - name: List files
+      run: |
+        ls
     
     # - name: Get Latest tag
     #   id: current_tag
