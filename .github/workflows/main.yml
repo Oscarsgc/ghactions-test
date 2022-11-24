@@ -11,22 +11,25 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    - uses: robinraju/release-downloader@v1.6
+    - name: Retrieve release assets
+      id: release_download
+      uses: dsaltares/fetch-gh-release-asset@master
       with:
-        latest: true
-        zipBall: true
+        version: 'latest'
+        regex: true
+        file: "*.zip"
     
     - name: List files
       run: |
         ls
     
-    - name: Unzip Release Folder
-      run: unzip -qq ${{ github.event.repository.name }}*.zip
+    # - name: Unzip Release Folder
+    #   run: unzip -qq ${{ github.event.repository.name }}*.zip
     
-    - name: List files
-      run: |
-        cd Oscarsgc-ghactions-test-87dffcd
-        ls
+    # - name: List files
+    #   run: |
+    #     cd Oscarsgc-ghactions-test-87dffcd
+    #     ls
     
     # - uses: actions/checkout@v3
     #   with:
