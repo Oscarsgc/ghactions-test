@@ -11,27 +11,21 @@ jobs:
     runs-on: ubuntu-latest
     steps:
 
-    # - uses: robinraju/release-downloader@v1.6
-    #   with:
-    #     latest: true
-    #     zipBall: true
-
-    - name: Get Release data
-      id: release_data
-      uses: KevinRohn/github-full-release-data@v2
+    - uses: robinraju/release-downloader@v1.6
       with:
-        asset-file: '*.zip'
-
-    - name: Show tag name with echo
-      run: echo ${{ steps.release_data.outputs.tag_name }}
+        latest: true
+        zipBall: true
+        tarBall: true
     
-    # - name: List files
-    #   run: |
-    #     pwd
-    #     ls
+    - name: List files
+      run: |
+        ls
     
-    # - name: Unzip Release Folder
-    #   run: unzip -qq ${{ github.event.repository.name }}*.zip
+    - name: Unzip Release Folder
+      run: unzip -qq ${{ github.event.repository.name }}*.zip
+    
+    - name: Untar Release Folder
+      run: tar -zvxf ${{ github.event.repository.name }}*.tar
     
     - name: List files
       run: |
