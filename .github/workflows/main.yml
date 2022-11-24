@@ -15,7 +15,6 @@ jobs:
       with:
         latest: true
         zipBall: true
-        tarBall: true
     
     - name: List files
       run: |
@@ -26,6 +25,7 @@ jobs:
     
     - name: List files
       run: |
+        cd Oscarsgc-ghactions-test-87dffcd
         ls
     
     # - uses: actions/checkout@v3
