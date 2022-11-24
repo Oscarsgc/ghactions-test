@@ -19,6 +19,8 @@ jobs:
     - name: Get Release data
       id: release_data
       uses: KevinRohn/github-full-release-data@v2
+      with:
+        asset-file: '*.zip'
 
     - name: Show tag name with echo
       run: echo ${{ steps.release_data.outputs.tag_name }}
