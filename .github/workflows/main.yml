@@ -33,6 +33,11 @@ jobs:
         cd Release
         ls
     
+    - name: List files 3
+      run: |
+        cd Oscarsgc-ghactions-test-3f355f9
+        ls
+    
     # - name: Get Latest tag
     #   id: current_tag
     #   uses: "WyriHaximus/github-action-get-previous-tag@v1"
