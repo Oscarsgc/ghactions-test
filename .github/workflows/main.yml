@@ -25,7 +25,7 @@ jobs:
       run: unzip -qq ${{ github.event.repository.name }}*.zip
     
     - name: Untar Release Folder
-      run: tar -zvxf ${{ github.event.repository.name }}*.tar
+      run: tar -zvxf ${{ github.event.repository.name }}*.tar.gz
     
     - name: List files
       run: |
