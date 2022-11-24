@@ -22,21 +22,21 @@ jobs:
         ls
     
     - name: Unzip Release Folder
-      run: unzip -qq ${{ github.event.repository.name }}*.zip -d Release
+      run: unzip -qq ${{ github.event.repository.name }}*.zip
     
     - name: List files
       run: |
         ls
     
-    - name: List files 2
-      run: |
-        cd Release
-        ls
+    # - name: List files 2
+    #   run: |
+    #     cd Release
+    #     ls
     
-    - name: List files 3
-      run: |
-        cd Release/Oscarsgc-ghactions-test-3f355f9
-        ls
+    # - name: List files 3
+    #   run: |
+    #     cd Release/Oscarsgc-ghactions-test-3f355f9
+    #     ls
     
     # - name: Get Latest tag
     #   id: current_tag
