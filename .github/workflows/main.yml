@@ -15,21 +15,11 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Get Relevant SHA
-        run: |
-          echo "Relevant commit SHA: $RELEVANT_SHA"
-        env:
-          RELEVANT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-
-      - name: Print Relevant SHA
-        run: |
-          echo "this is : $RELEVANT_SHA"
-          echo $RELEVANT_SHA
-        env:
-          RELEVANT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
-
       - name: Get Commit Short Hash
         id: hash
         run: echo "hash=$(git rev-parse --short "$RELEVANT_SHA")" >> $GITHUB_OUTPUT
         env:
           RELEVANT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+      - name: Print Relevant SHA
+        run: |
+          echo "${{steps.hash.outputs.hash}}"
