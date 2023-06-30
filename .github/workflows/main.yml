@@ -1,6 +1,7 @@
 name: License Server CI/CD
 
 on:
+  workflow_dispatch:
   push:
     branches: [ master ]
     
@@ -10,39 +11,17 @@ jobs:
   test:
     runs-on: ubuntu-latest
     steps:
-
-    - name: Retrieve release assets
-      id: release_download
-      uses: dsaltares/fetch-gh-release-asset@master
-      with:
-        regex: true
-        file: "*.zip"
     
-    - name: List files
+    - name: Get Relevant SHA
       run: |
-        ls
+        echo "Relevant commit SHA: $RELEVANT_SHA"
+      env:
+        RELEVANT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
     
-    # - name: Unzip Release Folder
-    #   run: unzip -qq ${{ github.event.repository.name }}*.zip
+    - name: Print Relevant SHA
+      run: |
+        echo "$RELEVANT_SHA"
     
-    # - name: List files
-    #   run: |
-    #     cd Oscarsgc-ghactions-test-87dffcd
-    #     ls
-    
-    # - uses: actions/checkout@v3
-    #   with:
-    #     fetch-depth: 0
-
-    # - name: Bump version and push tag
-    #   id: tag_version
-    #   uses: mathieudutour/github-tag-action@v6.0
-    #   with:
-    #     github_token: ${{ secrets.GITHUB_TOKEN }}
-
-    # - name: Create a GitHub release
-    #   uses: ncipollo/release-action@v1
-    #   with:
-    #     tag: ${{ steps.tag_version.outputs.new_tag }}
-    #     name: Release ${{ steps.tag_version.outputs.new_tag }}
-    #     token: ${{ secrets.GITHUB_TOKEN }}
+    - name: Get Commit Short Hash
+      id: hash
+      run: echo "hash=$(git rev-parse --short "$RELEVANT_SHA")" >> $GITHUB_OUTPUT
