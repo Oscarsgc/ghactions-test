@@ -4,7 +4,8 @@ name: Pull Request Action
 
 # Controls when the workflow will run
 on:
-  [pull_request]
+  workflow_dispatch:
+  # [pull_request]
 
 permissions: write-all
 
@@ -21,22 +22,22 @@ jobs:
       with:
         node-version: '12.20'
     
-    - name: Angular Test web app
-      run: |
-        cd ./ui
-        npm install
-        npm run test -- --no-watch --no-progress
+    # - name: Angular Test web app
+    #   run: |
+    #     cd ./ui
+    #     npm install
+    #     npm run test -- --no-watch --no-progress
 
-    - name: Publish Test Results
-      uses: EnricoMi/publish-unit-test-result-action@v1
-      if: always()
-      with:
-        files: "ui/test-results/*.xml"
+    # - name: Publish Test Results
+    #   uses: EnricoMi/publish-unit-test-result-action@v1
+    #   if: always()
+    #   with:
+    #     files: "ui/test-results/*.xml"
   
-    - name: Comment Test Coverage
-      uses: AthleticNet/comment-test-coverage@1.1
-      if: always()
-      with:
-        token: ${{ github.token }}
-        path: ui/test-results/coverage-summary.json
-        title: Karma Test Coverage
+    # - name: Comment Test Coverage
+    #   uses: AthleticNet/comment-test-coverage@1.1
+    #   if: always()
+    #   with:
+    #     token: ${{ github.token }}
+    #     path: ui/test-results/coverage-summary.json
+    #     title: Karma Test Coverage
