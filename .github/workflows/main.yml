@@ -23,7 +23,7 @@ jobs:
 
       - name: Print Relevant SHA
         run: |
-          echo "$RELEVANT_SHA"
+          echo "this is : $RELEVANT_SHA"
           echo $RELEVANT_SHA
 
       - name: Get Commit Short Hash
