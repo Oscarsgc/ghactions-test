@@ -25,8 +25,8 @@ jobs:
         run: |
           echo "this is : $RELEVANT_SHA"
           echo $RELEVANT_SHA
-          env:
-            RELEVANT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+        env:
+          RELEVANT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
 
       - name: Get Commit Short Hash
         id: hash
