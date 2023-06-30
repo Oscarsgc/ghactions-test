@@ -14,12 +14,27 @@ jobs:
       - uses: actions/checkout@v3
         with:
           fetch-depth: 0
+      - name: Get latest release details
+        id: release_details
+        uses: cardinalby/git-get-release-action@v1
+        env:
+          GITHUB_TOKEN: ${{ github.token }}
+        with:
+          latest: true
+
+      - name: Get Latest Release commit hash
+        id: get_commit
+        uses: actions/github-script@v2.1.0
+        with:
+          script: |
+            return "${{fromJSON(steps.release_details.outputs.assets)[0].name}}".split('-').pop().split('.').shift();
 
       - name: Get Commit Short Hash
         id: hash
         run: echo "hash=$(git rev-parse --short "$RELEVANT_SHA")" >> $GITHUB_OUTPUT
         env:
           RELEVANT_SHA: ${{ github.event.pull_request.head.sha || github.sha }}
+
       - name: Print Relevant SHA
         run: |
           echo "${{steps.hash.outputs.hash}}"
